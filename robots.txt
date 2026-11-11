@@ -1,3 +1,2 @@
 User-agent: *
-Allow: /
-Sitemap: https://hi.evangulov.com/sitemap.xml
+Disallow: /
