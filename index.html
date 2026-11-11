@@ -223,6 +223,10 @@ body{margin:0;background:#ECECEA}
 .lk5 svg{transition:transform .5s cubic-bezier(.16,1,.3,1)}.lk5:hover svg{transform:translate(4px,-4px)}
 .vis5{display:block;width:100%;height:auto}
 .fg5{margin:0}.fg5 figcaption{margin-top:12px;font-size:16px;color:#6E6E68}
+.oblive figure{margin:0}.oblive figcaption{margin-top:14px;font-size:17px;color:#BDBDB6}
+.lf{position:relative;overflow:hidden;background:#11110f}.lf iframe{display:block;border:0;transform-origin:0 0}
+.lphone{max-width:390px;margin:0 auto;border-radius:28px;overflow:hidden;box-shadow:0 0 0 1px #3A3A36}
+@media(max-width:760px){.oblive figcaption{font-size:15px}.lphone{border-radius:20px}}
 .ob2{display:grid;gap:40px}.ob2 figure{margin:0}.ob2 img{display:block;width:100%;height:auto}.ob2 figcaption{margin-top:14px;font-size:17px;color:#BDBDB6}.ob2 figcaption b{color:#F2F2EE;font-weight:500;margin-right:10px}
 @media(max-width:760px){.ob2{gap:28px}.ob2 figcaption{font-size:15px}}
 .w5{box-sizing:border-box;max-width:1440px;margin:0 auto;padding-inline:clamp(20px,5.5vw,80px)}
@@ -272,10 +276,8 @@ body{margin:0;background:#ECECEA}
 .ft5 .bt{display:flex;justify-content:space-between;gap:16px;margin-top:96px;padding-top:20px;border-top:1px solid #3A3A36;font-size:16px;color:#8E8E86}
 /* settle states, in site type */
 .sq{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #121212;border-bottom:1px solid #121212}
-.sq>div{padding:28px 28px 36px;border-left:1px solid #CFCFC8;display:flex;flex-direction:column;gap:20px;animation:sqOn 10s infinite;opacity:.5}
+.sq>div{padding:28px 28px 36px;border-left:1px solid #CFCFC8;display:flex;flex-direction:column;gap:20px}
 .sq>div:first-child{border-left:0;padding-left:0}
-.sq>div:nth-child(2){animation-delay:2.5s}.sq>div:nth-child(3){animation-delay:5s}.sq>div:nth-child(4){animation-delay:7.5s}
-.sq:hover>div{animation-play-state:paused}.sq>div:hover{opacity:1!important}
 @keyframes sqOn{0%,22%{opacity:1}28%,94%{opacity:.5}100%{opacity:1}}
 .sq h3{margin:0;display:flex;align-items:center;gap:12px;white-space:nowrap;font-size:clamp(24px,2.3vw,36px);line-height:1;letter-spacing:-.045em;font-weight:450}
 .sq h3 i{width:.42em;height:.42em;flex:none;background:var(--c)}
@@ -409,7 +411,9 @@ class Component extends DCLogic {
       // the Settle demo is drawn for a wide screen: scale it so the whole popover always fits its frame
       const fitDemo = () => document.querySelectorAll('.demo').forEach(d => { const st = d.parentElement; if (!st || !st.clientWidth) return;
         d.style.setProperty('--ds', Math.max(.8, Math.min(1.9, st.clientWidth / 490, st.clientHeight / 290)).toFixed(3)); });
-      fitMaps(); fitDemo(); window.addEventListener('resize', () => { fitMaps(); fitDemo(); });
+      const fitFrames = () => document.querySelectorAll('.lf').forEach(f => { const w = +f.dataset.w, h = +f.dataset.h, fr = f.querySelector('iframe'); if (!f.clientWidth || !fr) return;
+        const k = f.clientWidth / w; fr.style.transform = 'scale(' + k + ')'; f.style.height = Math.round(h * k) + 'px'; });
+      fitMaps(); fitDemo(); fitFrames(); window.addEventListener('resize', () => { fitMaps(); fitDemo(); fitFrames(); });
       // text drawn later by the live demos follows the same rule: no preposition left at a line end
       const P = /(^|[^\p{L}\-])(в|во|к|ко|с|со|у|о|об|обо|от|до|на|по|за|из|изо|без|для|при|про|над|под|перед|через|и|а|но|да|или|не|ни|я|мы) (?=\S)/giu;
       const glue = root => { const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let n;
