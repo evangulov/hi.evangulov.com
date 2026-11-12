@@ -1,4 +1,4 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Фильм Газстройпром — кейс · Роман Евангулов</title><meta name="description" content="Газстройпром."><link rel="canonical" href="https://hi.evangulov.com/gsp-film/"><meta property="og:type" content="website"><meta property="og:url" content="https://hi.evangulov.com/gsp-film/"><meta property="og:title" content="Фильм Газстройпром — кейс · Роман Евангулов"><meta property="og:description" content="Газстройпром."><meta property="og:image" content="https://hi.evangulov.com/og.png"><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#ECECEA"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300..700&amp;display=swap"><style>html,body{margin:0;background:#ECECEA}</style>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Фильм Газстройпром — кейс · Роман Евангулов</title><meta name="description" content="Газстройпром."><link rel="canonical" href="https://hi.evangulov.com/gsp-film/"><meta property="og:type" content="website"><meta property="og:url" content="https://hi.evangulov.com/gsp-film/"><meta property="og:title" content="Фильм Газстройпром — кейс · Роман Евангулов"><meta property="og:description" content="Газстройпром."><meta property="og:image" content="https://hi.evangulov.com/og.png"><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#ECECEA"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&amp;family=Onest:wght@300..700&amp;display=swap"><style>html,body{margin:0;background:#ECECEA}</style>
 
 
 
@@ -250,9 +250,12 @@ body{margin:0;background:#ECECEA}
 .c3x p{margin:0;font-size:clamp(19px,1.6vw,23px);line-height:1.5}
 .c3x a{border-bottom:1px solid currentColor}
 .bw{background:#E9E9E4}
-.bw-bar{height:40px;display:flex;align-items:center;gap:8px;padding:0 16px;background:#E9E9E4;color:#6E6E68;font-size:14px}
-.bw-bar i{width:10px;height:10px;border-radius:50%;background:#CFCFC8;display:block}
-.bw-bar span{margin-left:16px}
+.bw-bar{height:21px;display:flex;align-items:center;gap:5px;padding:0 9px;background:#E9E9E4;color:#77776F;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:8px;line-height:1;letter-spacing:0}
+.bw-bar i{width:6px;height:6px;border-radius:50%;background:#CFCFC8;display:block;flex:none}
+.bw-bar span{margin-left:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.02em}
+/* the map inside the fake browser: drawn at 1440×900 and shrunk to the frame, the frame keeps the same proportion */
+.mapbw{position:relative;aspect-ratio:1440/900;overflow:hidden;background:#F1F0EC}
+.mapbw .in{position:absolute;left:0;top:0;width:1440px;height:900px;zoom:var(--mk,.7222)}
 .bw video,.bw img{display:block;width:100%;height:auto;background:#111}
 .band5 > .wrap > video{display:block;width:100%;height:auto}
 .pair5{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
@@ -323,7 +326,7 @@ body{margin:0;background:#ECECEA}
  .band5{padding:28px 0}.sec5{padding:72px 0}.sh5{grid-template-columns:1fr;margin-bottom:32px}.sh5 h2{font-size:38px}
  .c3x,.pair5,.phone5{grid-template-columns:1fr;gap:28px}.phone5 video{width:300px}
  .sq{grid-template-columns:1fr 1fr}.sq>div{padding:20px 16px 24px}.sq>div:nth-child(3){border-left:0;padding-left:0;border-top:1px solid #CFCFC8}.sq>div:nth-child(4){border-top:1px solid #CFCFC8}.sq h3{font-size:22px;white-space:normal}.sq p{font-size:16px;min-height:4.4em}.sq li{font-size:14px}
- .bw-bar{height:28px;padding:0 10px}.bw-bar i{width:7px;height:7px}.bw-bar span{font-size:12px;margin-left:8px}
+ .bw-bar{height:21px;padding:0 8px}.bw-bar i{width:5px;height:5px}.bw-bar span{font-size:8px;margin-left:8px}
  .ft5{padding:72px 0 32px}.ft5 .em{font-size:clamp(26px,8.2vw,34px);margin-top:16px}.ft5 .ln{gap:28px;font-size:19px}.ft5 .bt{flex-direction:column;margin-top:64px}
  .nx5{padding-top:64px;padding-bottom:80px}
  .tabs5{gap:24px}.tabs5 button{font-size:22px;padding-bottom:12px}.us5 .it{grid-template-columns:1fr;gap:12px;padding:28px 0}
@@ -569,7 +572,10 @@ class Component extends DCLogic {
         d.style.setProperty('--ds', Math.max(.8, Math.min(1.9, st.clientWidth / 490, st.clientHeight / 290)).toFixed(3)); });
       const fitFrames = () => document.querySelectorAll('.lf').forEach(f => { const w = +f.dataset.w, h = +f.dataset.h, fr = f.querySelector('iframe'); if (!f.clientWidth || !fr) return;
         const k = f.clientWidth / w; fr.style.transform = 'scale(' + k + ')'; f.style.height = Math.round(h * k) + 'px'; });
-      fitMaps(); fitDemo(); fitFrames(); window.addEventListener('resize', () => { fitMaps(); fitDemo(); fitFrames(); });
+      const fitMapBw = () => { const m = [...document.querySelectorAll('.mapbw')].find(x => x.clientWidth); if (!m) return;
+        let st = document.getElementById('mapbw-k'); if (!st) { st = document.createElement('style'); st.id = 'mapbw-k'; document.head.appendChild(st); }
+        st.textContent = '.mapbw{--mk:' + (m.clientWidth / 1440).toFixed(4) + '}'; };
+      fitMaps(); fitDemo(); fitFrames(); fitMapBw(); window.addEventListener('resize', () => { fitMaps(); fitDemo(); fitFrames(); fitMapBw(); });
       // text drawn later by the live demos follows the same rule: no preposition left at a line end
       const P = /(^|[^\p{L}\-])(в|во|к|ко|с|со|у|о|об|обо|от|до|на|по|за|из|изо|без|для|при|про|над|под|перед|через|и|а|но|да|или|не|ни|я|мы) (?=\S)/giu;
       const glue = root => { const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let n;
