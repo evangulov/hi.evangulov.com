@@ -371,6 +371,15 @@ body{margin:0;background:#F5F5F3}
 .s5 .ft5 .cx svg{flex:none;width:.5em;height:.5em}
 .s5 .ft5 .bt{margin-top:72px}
 @media(max-width:760px){.s5 .ft5 .cx{flex-direction:column;margin:8px -16px 0}.s5 .ft5 .cx a{font-size:22px;padding:12px 16px}.s5 .ft5 .bt{margin-top:48px}}
+
+/* results: large figures with a short caption, right under the case header */
+.rs5-w{margin-top:48px}
+.rs5-l{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#6E6E68;margin-bottom:16px}
+.rs5{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:24px 40px}
+.rs5>div{border-top:1px solid #121212;padding-top:16px;display:flex;flex-direction:column;gap:10px}
+.rs5 b{font-size:clamp(44px,4.6vw,68px);line-height:1;letter-spacing:-.045em;font-weight:450;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rs5 span{font-size:17px;line-height:1.4;color:#55554F;max-width:300px}
+@media(max-width:760px){.rs5-w{margin-top:32px}.rs5{grid-template-columns:1fr 1fr;gap:24px 20px}.rs5 b{font-size:40px}.rs5 span{font-size:15px}}
 /* covers carry the work itself */
 .kc .art{position:absolute;z-index:1;pointer-events:none;overflow:hidden}
 .kc.w .art{top:0;right:0;bottom:0;width:56%}
