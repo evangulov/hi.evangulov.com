@@ -459,15 +459,14 @@ body{margin:0;background:#F5F5F3}
 /* three screens of one scenario: one top line, one scale; on a phone they slide sideways */
 .mk3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);align-items:start;max-width:1040px;margin:0 auto;padding:0;list-style:none}
 .mk3 li{margin:0;display:flex;flex-direction:column;gap:16px}
-.mk3 .ph{display:block;border-radius:18px;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.mk3 .ph{display:block;border-radius:18px}
 .mk3 .ph img{display:block;width:100%;height:auto;border-radius:inherit;-webkit-backface-visibility:hidden;backface-visibility:hidden}
-.mk3 li:hover .ph{transform:translateY(-8px)}
 .mk3 .n{display:flex;gap:12px;align-items:baseline;font-size:17px;line-height:1.35;color:#C9C9C3}
 .mk3 .n b{font-weight:450;color:#8E8E86;font-variant-numeric:tabular-nums}
 .rvon .mk3.rv{opacity:1;transform:none}
-.rvon .mk3.rv li{opacity:0;transform:translateY(48px);transition:opacity .8s,transform 1s cubic-bezier(.16,1,.3,1)}
+.rvon .mk3.rv li{opacity:0;transition:opacity .8s}
 .rvon .mk3.rv li:nth-child(2){transition-delay:.15s}.rvon .mk3.rv li:nth-child(3){transition-delay:.3s}
-.rvon .mk3.rv.in li{opacity:1;transform:none}
+.rvon .mk3.rv.in li{opacity:1}
 .c3x p+p{margin-top:1em}
 @media(max-width:760px){
  .mk3{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;margin:0 -16px;padding:0 16px;scrollbar-width:none}
