@@ -608,7 +608,7 @@ body{margin:0;background:#F5F5F3}
 .hwC .sw button{all:unset;cursor:pointer;padding:6px 12px;font-size:14px;color:#121212;transition:background-color .15s,color .15s}
 .hwC .sw button:hover{background:#EAEAE6}
 .hwC .sw button.on{background:#121212;color:#fff}
-@media(max-width:760px){.hwA .rs5>div:nth-child(2n) .pop{left:auto;right:0}.hwA .num{font-size:40px}.hwA .pop{top:52px;width:calc(100vw - 32px)}.hwB .fl{top:0}}
+@media(max-width:760px){.hwA .num{font-size:40px}.hwA .pop{top:52px}.hwA .pop:not(.on){width:0!important;padding:0;border:0;overflow:hidden}.hwB .fl{top:0}}
 .s5 .ch5+.sec5{padding-top:0!important}
 /* one line, one job: sections are split by air, grey lines only between items of a list, one black line before «Следующий кейс» */
 .s5 .ch5 .mt{border-top:0!important;padding-top:0!important;margin-top:28px}
@@ -667,7 +667,13 @@ class Component extends DCLogic {
       const n = q('.hwA .num');
       if (n) { const p = n.parentNode.querySelector('.pop'); const open = !p.classList.contains('on');
         root.querySelectorAll('.pop.on,.num.on').forEach((x) => x.classList.remove('on'));
-        if (open) { p.classList.add('on'); n.classList.add('on'); } n.setAttribute('aria-expanded', open); return; }
+        if (open) {
+          // on a phone the note spans the whole row: the same margins as the text column, whatever cell it opens from
+          if (window.innerWidth <= 760) { const row = n.closest('.rs5').getBoundingClientRect(), cell = n.parentNode.getBoundingClientRect();
+            p.style.left = (row.left - cell.left) + 'px'; p.style.right = 'auto'; p.style.width = row.width + 'px'; }
+          else { p.style.left = ''; p.style.right = ''; p.style.width = ''; }
+          p.classList.add('on'); n.classList.add('on'); }
+        n.setAttribute('aria-expanded', open); return; }
       if (q('.hwA .pop')) return;
       root.querySelectorAll('.hwA .pop.on,.hwA .num.on').forEach((x) => x.classList.remove('on'));
       const c = q('.hwB .rs5 > div');
