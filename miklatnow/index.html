@@ -237,7 +237,7 @@ body{margin:0;background:#F5F5F3}
 .dark{background:#121212;color:#F2F2EE}
 .warm{background:transparent}
 .sec5{padding:120px 0}
-.sh5{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:24px 64px;align-items:end;margin-bottom:56px}
+.sh5{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:24px 64px;align-items:start;margin-bottom:56px}
 .sh5.one{grid-template-columns:minmax(0,1fr);max-width:900px}
 .sh5 .lb{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#6E6E68;margin-bottom:16px}
 .sh5 h2{margin:0;font-size:clamp(38px,4.6vw,72px);line-height:1.04;letter-spacing:-.04em;font-weight:450;text-wrap:balance}
@@ -486,6 +486,20 @@ body{margin:0;background:#F5F5F3}
 }
 @media(prefers-reduced-motion:reduce){.rvon .mk3.rv li{opacity:1;transform:none;transition:none}}
 .s5 .ch5+.sec5{padding-top:0!important}
+/* optical edge: big Onest letters carry a wider side bearing than 15px labels, so headings step left by it */
+.s5 .ch5 h1,.s5 .sh5 h2,.s5 .pr5 h3,.s5 .nx5 .b>span:first-child{margin-left:-.05em}
+/* section heading: the label hangs above on its own line, the title starts level with the text on the right (cap tops aligned) */
+@media(min-width:761px){
+ .s5 .sh5:not(.one){row-gap:0}
+ .s5 .sh5:not(.one)>div:first-child{display:contents}
+ .s5 .sh5:not(.one) .lb,.s5 .sh5:not(.one)>div:first-child>.tag5{grid-column:1;grid-row:1;justify-self:start}
+ .s5 .sh5:not(.one) h2{grid-column:1;grid-row:2}
+ .s5 .sh5:not(.one)>:last-child{grid-column:2;grid-row:2}
+ .s5 .sh5:not(.one)>p{margin-top:calc(clamp(30px,3vw,48px)*.1335 - .3635em)!important}
+ .s5 .sh5 .lb .tag5{margin:0 0 0 12px;vertical-align:middle}
+}
+/* no lines on the dark stage */
+.s5 .dark .pv{border-top:0!important;padding-top:0!important}
 /* one line, one job: sections are split by air, grey lines only between items of a list, one black line before «Следующий кейс» */
 .s5 .ch5 .mt{border-top:0!important;padding-top:0!important;margin-top:28px}
 .s5 .rs5>div{border-top:0!important;padding-top:0}
