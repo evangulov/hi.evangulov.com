@@ -583,8 +583,14 @@ body.mm-lock{overflow:hidden}
 .sp:focus-visible .sp-me{opacity:1;grid-template-rows:1fr}
 .sp:focus-visible .sp-a,.sp:active .sp-a{background:#C7F36B;border-color:#C7F36B;color:#121212}
 .sp-me{color:#FFFFFF}
+/* the black plate is wider than the row: text keeps its line at rest, but never touches the edge of the plate */
+.sp{position:relative;isolation:isolate;--bx:16px}
+.sp::before{content:"";position:absolute;z-index:-1;top:-1px;bottom:-1px;left:calc(-1*var(--bx));right:calc(-1*var(--bx));background:#121212;opacity:0;transition:opacity .15s ease}
+@media(hover:hover){.sp:hover{background:transparent}.sp:hover::before{opacity:1}}
+.sp:focus-visible,.sp:active{background:transparent}.sp:focus-visible::before,.sp:active::before{opacity:1}
 
 @media(max-width:760px){
+ .sp{--bx:14px;padding:24px 0}
  .sp{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n a" "d a";gap:10px 16px;padding:20px 0;height:auto;min-height:0}
  .sp-r,.sp-t{display:contents}.sp-n{grid-area:n;font-size:clamp(30px,9vw,40px)}.sp-d{grid-area:d;font-size:16px}.sp-a{grid-area:a;align-self:center}
  .sp-me{display:none}
