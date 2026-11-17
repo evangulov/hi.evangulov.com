@@ -496,6 +496,13 @@ body{margin:0;background:#F5F5F3}
 </head><body><div id="root"></div><noscript><p style="font:20px sans-serif;padding:40px">Для этого сайта нужен JavaScript. Напишите мне: <a href="mailto:evangulov@gmail.com">evangulov@gmail.com</a></p></noscript><script>class DCLogic{constructor(p){this.props=p||{};this.state={}} setState(o){Object.assign(this.state,typeof o==='function'?o(this.state):o);this._r&&this._r()} forceUpdate(){this._r&&this._r()}}
 const C=[];C[0]={cls:(function(){ 
 class Component extends DCLogic {
+  // the tab lives in the address: #design-team (tab 0) and #product-team (tab 1), so the home page can link straight to it
+  constructor(p){ super(p); this.state = { tab: Component.fromHash() }; }
+  static fromHash(){ const h = (typeof location !== 'undefined' && location.hash) || ''; return h === '#product-team' ? 1 : 0; }
+  static hashOf(k){ return k === 1 ? '#product-team' : '#design-team'; }
+  goTo(){ const el = document.getElementById('useful'); if (!el) return;
+    const hd = document.querySelector('.hd5'), off = (hd ? hd.offsetHeight : 0) + 8;
+    const y = el.getBoundingClientRect().top + window.scrollY - off; window.scrollTo({ top: Math.max(0, y), behavior: 'auto' }); }
   componentDidMount(){
     try {
       const fitMaps = () => document.querySelectorAll('.mapfull').forEach(m => {
@@ -528,11 +535,18 @@ class Component extends DCLogic {
         els.forEach(e => io.observe(e));
       }
     } catch (e) {}
+
+    if (this._on) return; this._on = 1;
+    const has = () => location.hash === '#product-team' || location.hash === '#design-team';
+    if (has()) { try { history.scrollRestoration = 'manual'; } catch (x) {}
+      const go = () => this.goTo(); requestAnimationFrame(go); setTimeout(go, 120); document.fonts && document.fonts.ready.then(go); }
+    addEventListener('popstate', () => { const k = Component.fromHash(); if (k !== this.state.tab) this.setState({ tab: k }); if (has()) requestAnimationFrame(() => this.goTo()); });
   }
-  constructor(p){ super(p); this.state = { tab: 0 }; }
+  pick(k){ if (k === this.state.tab && location.hash === Component.hashOf(k)) return; this.setState({ tab: k });
+    try { history.pushState(null, '', Component.hashOf(k)); } catch (x) {} }
   renderVals(){
-    const t = this.state.tab, set = (k) => () => this.setState({ tab: k });
-    const key = (e) => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); const k = t === 0 ? 1 : 0; this.setState({ tab: k }); try { const b = document.querySelectorAll('.tabs5 button')[k]; b && b.focus(); } catch (x) {} } };
+    const t = this.state.tab, set = (k) => () => this.pick(k);
+    const key = (e) => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); const k = t === 0 ? 1 : 0; this.pick(k); try { const b = document.querySelectorAll('.tabs5 button')[k]; b && b.focus(); } catch (x) {} } };
     return { t0: set(0), t1: set(1), c0: t === 0 ? 'on' : '', c1: t === 1 ? 'on' : '', s0: t === 0 ? 'true' : 'false', s1: t === 1 ? 'true' : 'false',
              i0: t === 0 ? '0' : '-1', i1: t === 1 ? '0' : '-1', is0: t === 0, is1: t === 1, kd: key };
   }
