@@ -733,6 +733,8 @@ body{margin:0;background:#F5F5F3}
 /* the case finale: «Следующий кейс» sits close to the footer */
 .s5 main>section:nth-last-child(2){padding-bottom:clamp(32px,3.2vw,48px)!important}
 .s5 .nx5{padding-top:clamp(32px,3.2vw,48px)!important;padding-bottom:clamp(40px,4vw,56px)!important}
+/* phone: one gutter for the header, the home page and the text of every page — the same as the case column */
+@media(max-width:760px){.s5{--g2:clamp(20px,5.5vw,80px)}.s5 .pp{--g:clamp(20px,5.5vw,80px)}}
 @media(max-width:760px){.gf{padding-top:36px}.gf-cl a{font-size:28px}.gf-bt{flex-direction:column;margin-top:36px;font-size:13px}
  .s5 .hd5 nav{gap:18px;font-size:15px}.s5 .hd5 .nm{font-size:15px!important}}
 
