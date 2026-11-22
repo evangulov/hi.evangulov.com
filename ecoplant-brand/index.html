@@ -298,6 +298,8 @@ body{margin:0;background:#F5F5F3}
 .tabs5 button.on{color:#121212;font-weight:550;border-bottom-color:#121212}
 .tabs5 button:focus-visible{outline:2px solid #121212;outline-offset:6px}
 @media(max-width:374px){.tabs5{gap:14px!important}.tabs5 button{font-size:18px!important}}
+/* phone: two equal halves, each label on one line, the active line runs under its whole half */
+@media(max-width:760px){.tabs5{display:grid!important;grid-template-columns:1fr 1fr;gap:16px!important}.tabs5 button{font-size:clamp(17px,5.4vw,22px)!important;white-space:nowrap}}
 .us5 .it{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 64px;padding:36px 0;border-bottom:1px solid #CFCFC8}
 .us5 h3{margin:0;font-size:clamp(24px,2.2vw,32px);line-height:1.15;letter-spacing:-.03em;font-weight:450}
 .us5 p{margin:0;font-size:clamp(19px,1.6vw,22px);line-height:1.55;color:#3C3C38}
@@ -845,7 +847,7 @@ body{margin:0;background:#F5F5F3}
  .pv-g #work .vr-d{font-size:16px;line-height:1.4}
  .gf-ld{font-size:24px;margin-bottom:28px}
  .gf-bt{gap:2px!important}
- .gf{padding-top:48px!important}.gf-cl a{font-size:34px!important}.gf-bt{margin-top:48px!important}
+ .gf{padding-top:48px!important}.gf-cl a{font-size:clamp(26px,8.6vw,34px)!important}.gf-bt{margin-top:48px!important}
 }
 </style>
 </head><body><div id="root"></div><noscript><p style="font:20px sans-serif;padding:40px">Для этого сайта нужен JavaScript. Напишите мне: <a href="mailto:evangulov@gmail.com">evangulov@gmail.com</a></p></noscript><script>class DCLogic{constructor(p){this.props=p||{};this.state={}} setState(o){Object.assign(this.state,typeof o==='function'?o(this.state):o);this._r&&this._r()} forceUpdate(){this._r&&this._r()}}
